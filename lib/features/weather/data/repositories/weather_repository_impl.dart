@@ -4,6 +4,7 @@ import 'package:weather/core/AppStrings/error_strings.dart';
 import 'package:weather/core/Network/network_info.dart';
 import 'package:weather/core/error/exceptions.dart';
 import 'package:weather/core/error/failures.dart';
+import 'package:weather/features/weather/data/datasources/weather_remote_data_Source.dart';
 import 'package:weather/features/weather/domain/entities/weather.dart';
 import 'package:weather/features/weather/domain/repositories/weather_repository.dart';
 
@@ -16,11 +17,12 @@ class WeatherRepositoryImpl extends WeatherRepository {
   });
 
   @override
-  Future<Either<Failure, List<Weather>>> searchWeatherByCitiy({required String query}) async {
+  Future<Either<Failure, Weather>> getWeatherByCitiy({required String query}) async {
     if (await networkInfo.isConnected()) {
       try {
-        final remoteResult = await remoteDataSrouce.searchWeatherByCitiy(query: query);
-        return Right(remoteResult.results);
+        final getWeatherByCitiyResult = await remoteDataSrouce.getWeatherByCitiy(query: query);
+        final getWeatherByWoeidResult = await remoteDataSrouce.getWeatherByWoeid(woeid: getWeatherByCitiyResult.woeid);
+        return Right(getWeatherByWoeidResult);
       } on ServerException catch (e) {
         return Left(UnExpectedServerResponseFailure(e.message));
       } catch (e) {

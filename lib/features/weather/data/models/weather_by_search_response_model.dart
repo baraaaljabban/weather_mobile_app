@@ -18,18 +18,18 @@ class WeatherBySearchResponseModel extends WeatherSearch {
   Map<String, dynamic> toMap() {
     return {
       'title': title,
-      'locationType': locationType,
+      'location_type': locationType,
       'woeid': woeid,
-      'lattLong': lattLong,
+      'latt_long': lattLong,
     };
   }
 
   factory WeatherBySearchResponseModel.fromMap(Map<String, dynamic> map) {
     return WeatherBySearchResponseModel(
       title: map['title'] != null ? map['title'] as String : "",
-      locationType: map['locationType'] != null ? map['locationType'] as String : "",
+      locationType: map['location_type'] != null ? map['location_type'] as String : "",
       woeid: map['woeid'] != null ? map['woeid'] as int : 0,
-      lattLong: map['lattLong'] != null ? map['lattLong'] as String : "",
+      lattLong: map['latt_long'] != null ? map['latt_long'] as String : "",
     );
   }
 

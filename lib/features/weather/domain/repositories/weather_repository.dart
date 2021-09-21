@@ -3,5 +3,5 @@ import 'package:weather/core/error/failures.dart';
 import 'package:weather/features/weather/domain/entities/weather.dart';
 
 abstract class WeatherRepository {
-  Future<Either<Failure, List<Weather>>> searchWeatherByCitiy({required String query});
+  Future<Either<Failure, Weather>> getWeatherByCitiy({required String query});
 }
