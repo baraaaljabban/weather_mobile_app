@@ -3,3 +3,4 @@ export 'package:weather/features/weather/data/datasource/weather_remote_data_sou
 export 'package:weather/features/weather/data/models/weather_by_woeid_response_model.dart';
 export 'package:weather/features/weather/domain/repositories/weather_repository.dart';
 export 'package:weather/features/weather/domain/usecases/weather_by_city.dart';
+export 'package:weather/features/weather/data/repositories/weather_repository_impl.dart';
