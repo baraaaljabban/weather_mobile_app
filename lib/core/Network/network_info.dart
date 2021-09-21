@@ -14,6 +14,7 @@ class NetworkInfoImpl implements NetworkInfo {
     required this.connectivity,
   });
 
+  @override
   Future<bool> isConnected() async {
     var hasConnection = await dataConnectionChecker.hasConnection;
     var connectivityResult = await (connectivity.checkConnectivity());

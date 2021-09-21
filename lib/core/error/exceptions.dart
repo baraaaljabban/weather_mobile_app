@@ -1,5 +1,5 @@
 class ServerException implements Exception {
-  final message;
+  final String message;
   ServerException({required this.message});
 }
 
@@ -9,16 +9,16 @@ class CacheException implements Exception {
 }
 
 class UnExpectedServerResponseException implements Exception {
-  final message;
+  final String message;
   UnExpectedServerResponseException(this.message);
 }
 
 class UnExpectedSocketException implements Exception {
-  final message;
+  final String message;
   UnExpectedSocketException(this.message);
 }
 
 class JSONException implements Exception {
-  final message;
-  JSONException({this.message});
+  final String message;
+  JSONException({required this.message});
 }

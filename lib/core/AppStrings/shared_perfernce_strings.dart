@@ -1,1 +1,1 @@
-const CACHED_TOKEN = 'CACHED_TOKEN';
+const cashedToken = 'CACHED_TOKEN';

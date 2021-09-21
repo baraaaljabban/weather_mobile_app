@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather/core/Network/http_client.dart';
 import 'package:weather/core/Network/network_info.dart';
+import 'package:weather/features/weather/export_weather_feature.dart';
 part 'package:weather/core/Service/weather.dart';
 final sl = GetIt.instance;
 

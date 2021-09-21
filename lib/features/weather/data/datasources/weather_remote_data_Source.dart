@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'dart:convert';
 
 import 'package:weather/core/Network/http_client.dart';
@@ -33,7 +34,7 @@ class WeatherRemoteDataSrouceImpl extends WeatherRemoteDataSrouce {
       if (respone.statusCode == RESPONSE_SUCCESS) {
         return response;
       } else {
-        throw ServerException(message: respone.reasonPhrase);
+        throw ServerException(message: respone.reasonPhrase.toString());
       }
     } on ServerException catch (e) {
       throw ServerException(message: e.message.toString());
@@ -53,7 +54,7 @@ class WeatherRemoteDataSrouceImpl extends WeatherRemoteDataSrouce {
       if (respone.statusCode == RESPONSE_SUCCESS) {
         return response;
       } else {
-        throw ServerException(message: respone.reasonPhrase);
+        throw ServerException(message: respone.reasonPhrase.toString());
       }
     } on ServerException catch (e) {
       throw ServerException(message: e.message.toString());

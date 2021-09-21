@@ -20,17 +20,17 @@ class HttpHelper {
 
   String getBaseURL() {
     if (foundation.kDebugMode) {
-      return baseURLStaging;
+      return BASE_URL_STAGING;
     } else {
-      return baseURL;
+      return BASE_URL;
     }
   }
 
   String getApiKey() {
     if (foundation.kDebugMode) {
-      return apiKeyStaging;
+      return API_KEY_STAGING;
     } else {
-      return apiKey;
+      return API_KEY;
     }
   }
 
