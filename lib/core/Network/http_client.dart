@@ -1,15 +1,14 @@
 import 'dart:convert';
 import 'dart:developer' as developer;
-import 'package:flutter/foundation.dart' as Foundation;
+import 'package:flutter/foundation.dart' as foundation;
 import 'package:http/http.dart' as http;
 import 'package:weather/core/AppStrings/server_strings.dart';
 
 class HttpHelper {
   HttpHelper();
 
-  Future<http.Response> get(
-      {String path = "", Map<String, String>? extraHeders}) async {
-    var fullPath = getBaseURL() + path + "api-key=${getApiKey()}";
+  Future<http.Response> get({String path = "", Map<String, String>? extraHeders}) async {
+    var fullPath = getBaseURL() + path;
     developer.log('get Path: $fullPath');
     final response = await http.get(
       Uri.parse(fullPath),
@@ -20,28 +19,30 @@ class HttpHelper {
   }
 
   String getBaseURL() {
-    if (Foundation.kDebugMode)
-      return BaseURLSTAGING;
-    else
-      return BaseURL;
+    if (foundation.kDebugMode) {
+      return baseURLStaging;
+    } else {
+      return baseURL;
+    }
   }
 
   String getApiKey() {
-    if (Foundation.kDebugMode)
-      return ApiKeyStaging;
-    else
-      return ApiKey;
+    if (foundation.kDebugMode) {
+      return apiKeyStaging;
+    } else {
+      return apiKey;
+    }
   }
 
   Map<String, String> getHeaders({Map? extraHeaders}) {
     Map<String, String> headers = {
       'Content-Type': 'application/json; charset=UTF-8',
-      'api-key': getApiKey(),
+      // 'api-key': getApiKey(),
       // HttpHeaders.authorizationHeader: 'Bearer ' + getToken(),
     };
-    if (extraHeaders == null || extraHeaders.isEmpty)
+    if (extraHeaders == null || extraHeaders.isEmpty) {
       return headers;
-    else {
+    } else {
       headers.addAll(extraHeaders as Map<String, String>);
       return headers;
     }
