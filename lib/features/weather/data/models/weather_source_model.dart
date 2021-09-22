@@ -1,6 +1,6 @@
 part of 'package:weather/features/weather/data/models/weather_by_woeid_response_model.dart';
 
-class SourceModel extends Source {
+class SourceModel {
   String sourceTitle;
   String sourceSlug;
   String sourceUrl;
@@ -11,18 +11,20 @@ class SourceModel extends Source {
     required this.sourceSlug,
     required this.sourceUrl,
     required this.sourceCrawlRate,
-  }) : super(
-          title: sourceTitle,
-          slug: sourceSlug,
-          url: sourceUrl,
-          crawlRate: sourceCrawlRate,
-        );
+  })
+  // : super(
+  // title: sourceTitle,
+  // slug: sourceSlug,
+  // url: sourceUrl,
+  // crawlRate: sourceCrawlRate,
+  // )
+  ;
 
   Map<String, dynamic> toMap() {
     return {
-      'title': title,
-      'slug': slug,
-      'url': url,
+      'title': sourceTitle,
+      'slug': sourceSlug,
+      'url': sourceUrl,
       'crawl_rate': sourceCrawlRate,
     };
   }

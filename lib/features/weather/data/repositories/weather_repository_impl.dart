@@ -21,7 +21,7 @@ class WeatherRepositoryImpl extends WeatherRepository {
     if (await networkInfo.isConnected()) {
       try {
         final getWeatherByCitiyResult = await remoteDataSrouce.getWeatherByCitiy(query: query);
-        final getWeatherByWoeidResult = await remoteDataSrouce.getWeatherByWoeid(woeid: getWeatherByCitiyResult.woeid);
+        final getWeatherByWoeidResult = await remoteDataSrouce.getWeatherByWoeid(woeid: getWeatherByCitiyResult.weatherSearchList.first.woeid);
         return Right(getWeatherByWoeidResult);
       } on ServerException catch (e) {
         return Left(UnExpectedServerResponseFailure(e.message));

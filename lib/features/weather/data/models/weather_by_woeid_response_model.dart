@@ -40,7 +40,7 @@ class WeatherByWoeidResponseModel extends Weather {
           sunSet: responseSunSet,
           timezoneName: responseTimezoneName,
           parent: parentModel,
-          sources: sourcesModel,
+          // sources: sourcesModel,
           title: responseTitle,
           locationType: responseLocationType,
           woeid: responseWoeid,
