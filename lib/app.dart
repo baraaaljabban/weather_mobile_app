@@ -5,7 +5,7 @@ import 'features/weather/presentation/bloc/weather_bloc.dart';
 import 'features/weather/presentation/pages/weather_page.dart';
 
 class App extends StatefulWidget {
- const App({Key? key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   _AppState createState() => _AppState();
@@ -22,8 +22,16 @@ class _AppState extends State<App> {
         ),
       ],
       child: MaterialApp(
+        theme: ThemeData(
+          brightness: Brightness.light,
+        ),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+        ),
+        themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             backgroundColor: Colors.blue,
             centerTitle: true,
