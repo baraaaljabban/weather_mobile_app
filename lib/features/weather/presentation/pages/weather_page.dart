@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather/features/common/snack_bar.dart';
 import 'package:weather/features/weather/export_weather_feature.dart';
+import 'package:weather/features/weather/presentation/widgets/horizontal/weather_controller_horizontal.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -31,7 +32,11 @@ class _WeatherPageState extends State<WeatherPage> {
           }
         },
         builder: (context, state) {
-          return Container();
+          return OrientationBuilder(
+            builder: (context, orientation) {
+              return orientation == Orientation.landscape ? const WeatherControllerHorizontal() : const WeatherControllerHorizontal();
+            },
+          );
         },
       ),
     );
