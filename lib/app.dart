@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/Service/injection_service.dart';
+import 'features/weather/domain/usecases/weather_by_city.dart';
 import 'features/weather/presentation/bloc/weather_bloc.dart';
 import 'features/weather/presentation/pages/weather_page.dart';
 
@@ -12,6 +13,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  bool dayMode = false;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -23,10 +25,10 @@ class _AppState extends State<App> {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          brightness: Brightness.light,
+          brightness: dayMode ? Brightness.dark : Brightness.light,
         ),
         darkTheme: ThemeData(
-          brightness: Brightness.dark,
+          brightness: dayMode ? Brightness.dark : Brightness.light,
         ),
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
@@ -35,6 +37,17 @@ class _AppState extends State<App> {
           appBar: AppBar(
             backgroundColor: Colors.blue,
             centerTitle: true,
+            actions: [
+              
+              IconButton(
+                icon: Icon(dayMode ? Icons.nightlight : Icons.light_mode),
+                onPressed: () {
+                  setState(() {
+                    dayMode = !dayMode;
+                  });
+                },
+              ),
+            ],
             title: const Center(child: Text("Weather")),
           ),
           body: Builder(

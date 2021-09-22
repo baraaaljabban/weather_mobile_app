@@ -14,7 +14,7 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
-
+  bool dayMode = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
