@@ -2,5 +2,6 @@
 
 const BASE_URL = "https://www.metaweather.com/api/location";
 const BASE_URL_STAGING = "https://www.metaweather.com/api/location";
+const IMAGE_URL = "/static/img/weather/";
 const API_KEY = "";
 const API_KEY_STAGING = "";
