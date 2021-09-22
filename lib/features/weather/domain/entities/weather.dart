@@ -49,12 +49,12 @@ class ConsolidatedWeather {
   String windDirectionCompass;
   String created;
   String applicableDate;
-  double minTemp;
-  double maxTemp;
-  double theTemp;
-  double windSpeed;
+  int minTemp;
+  int maxTemp;
+  int theTemp;
+  int windSpeed;
   double windDirection;
-  double airPressure;
+  int airPressure;
   int humidity;
   double visibility;
   int predictability;

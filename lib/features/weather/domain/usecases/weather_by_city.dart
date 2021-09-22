@@ -1,5 +1,3 @@
-
-
 import 'package:dartz/dartz.dart';
 import 'package:weather/core/UseCases/use_cases.dart';
 import 'package:weather/core/error/failures.dart';

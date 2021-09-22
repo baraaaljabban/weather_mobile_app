@@ -34,24 +34,25 @@ class ConsolidatedWeatherModel extends ConsolidatedWeather {
     required this.consolidatedVisibility,
     required this.consolidatedPredictability,
   }) : super(
-            id: consolidatedId,
-            weatherStateName: consolidatedWeatherStateName,
-            weatherStateAbbr: consolidatedWeatherStateAbbr,
-            windDirectionCompass: consolidatedWindDirectionCompass,
-            created: consolidatedCreated,
-            applicableDate: consolidatedApplicableDate,
-            minTemp: consolidatedMinTemp,
-            maxTemp: consolidatedMaxTemp,
-            theTemp: consolidatedTheTemp,
-            windSpeed: consolidatedWindSpeed,
-            windDirection: consolidatedWindDirection,
-            airPressure: consolidatedAirPressure,
-            humidity: consolidatedHumidity,
-            visibility: consolidatedVisibility,
-            predictability: consolidatedPredictability,
-            day: DateFormat('EEEE').format(
-              DateTime.parse(consolidatedApplicableDate),
-            ));
+          id: consolidatedId,
+          weatherStateName: consolidatedWeatherStateName,
+          weatherStateAbbr: consolidatedWeatherStateAbbr,
+          windDirectionCompass: consolidatedWindDirectionCompass,
+          created: consolidatedCreated,
+          applicableDate: consolidatedApplicableDate,
+          minTemp: consolidatedMinTemp.round(),
+          maxTemp: consolidatedMaxTemp.round(),
+          theTemp: consolidatedTheTemp.round(),
+          windSpeed: consolidatedWindSpeed.round(),
+          windDirection: consolidatedWindDirection,
+          airPressure: consolidatedAirPressure.round(),
+          humidity: consolidatedHumidity,
+          visibility: consolidatedVisibility,
+          predictability: consolidatedPredictability,
+          day: DateFormat('EEEE').format(
+            DateTime.parse(consolidatedApplicableDate),
+          ),
+        );
 
   Map<String, dynamic> toMap() {
     return {
