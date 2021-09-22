@@ -48,7 +48,8 @@ dependencies:
   mockito: ^5.0.15
   #for date formating
   intl: ^0.17.0
-
+  # Pull to refresh 
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:

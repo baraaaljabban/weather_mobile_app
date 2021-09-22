@@ -30,7 +30,7 @@
             "type": "dart",
             "request": "launch",
             "program": "lib/main.dart",
-            "deviceId": "192.168.0.79:1031"
+            "deviceId": "192.168.0.103:1031"
         },
         {
             "name": "flutter",
