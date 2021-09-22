@@ -1,6 +1,6 @@
 
 import 'dart:convert';
-
+import 'package:intl/intl.dart';
 import 'package:weather/features/weather/domain/entities/weather.dart';
 part 'package:weather/features/weather/data/models/weather_consolidated_weather_model.dart';
 part 'package:weather/features/weather/data/models/weather_parent_model.dart';

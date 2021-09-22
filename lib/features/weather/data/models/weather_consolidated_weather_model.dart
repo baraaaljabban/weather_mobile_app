@@ -1,4 +1,5 @@
 part of 'package:weather/features/weather/data/models/weather_by_woeid_response_model.dart';
+
 class ConsolidatedWeatherModel extends ConsolidatedWeather {
   int consolidatedId;
   String consolidatedWeatherStateName;
@@ -33,22 +34,24 @@ class ConsolidatedWeatherModel extends ConsolidatedWeather {
     required this.consolidatedVisibility,
     required this.consolidatedPredictability,
   }) : super(
-          id: consolidatedId,
-          weatherStateName: consolidatedWeatherStateName,
-          weatherStateAbbr: consolidatedWeatherStateAbbr,
-          windDirectionCompass: consolidatedWindDirectionCompass,
-          created: consolidatedCreated,
-          applicableDate: consolidatedApplicableDate,
-          minTemp: consolidatedMinTemp,
-          maxTemp: consolidatedMaxTemp,
-          theTemp: consolidatedTheTemp,
-          windSpeed: consolidatedWindSpeed,
-          windDirection: consolidatedWindDirection,
-          airPressure: consolidatedAirPressure,
-          humidity: consolidatedHumidity,
-          visibility: consolidatedVisibility,
-          predictability: consolidatedPredictability,
-        );
+            id: consolidatedId,
+            weatherStateName: consolidatedWeatherStateName,
+            weatherStateAbbr: consolidatedWeatherStateAbbr,
+            windDirectionCompass: consolidatedWindDirectionCompass,
+            created: consolidatedCreated,
+            applicableDate: consolidatedApplicableDate,
+            minTemp: consolidatedMinTemp,
+            maxTemp: consolidatedMaxTemp,
+            theTemp: consolidatedTheTemp,
+            windSpeed: consolidatedWindSpeed,
+            windDirection: consolidatedWindDirection,
+            airPressure: consolidatedAirPressure,
+            humidity: consolidatedHumidity,
+            visibility: consolidatedVisibility,
+            predictability: consolidatedPredictability,
+            day: DateFormat('EEEE').format(
+              DateTime.parse(consolidatedApplicableDate),
+            ));
 
   Map<String, dynamic> toMap() {
     return {

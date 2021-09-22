@@ -58,6 +58,7 @@ class ConsolidatedWeather {
   int humidity;
   double visibility;
   int predictability;
+  String day;
 
   ConsolidatedWeather({
     required this.id,
@@ -75,6 +76,7 @@ class ConsolidatedWeather {
     required this.humidity,
     required this.visibility,
     required this.predictability,
+    required this.day,
   });
 }
 
