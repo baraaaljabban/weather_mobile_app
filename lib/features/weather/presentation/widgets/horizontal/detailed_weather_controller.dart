@@ -27,7 +27,7 @@ class _DetailedWeatherControllerState extends State<DetailedWeatherController> {
         if (state is DetailedDayWeatherState) {
           return Column(
             children: [
-              Text("${widget.consolidatedWeather.applicableDate}"),
+              Text("${widget.consolidatedWeather.day}"),
               Text("${widget.consolidatedWeather.humidity}"),
               Text("${widget.consolidatedWeather.theTemp}"),
             ],
