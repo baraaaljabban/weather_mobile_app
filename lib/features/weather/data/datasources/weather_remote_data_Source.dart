@@ -1,4 +1,4 @@
-// ignore: file_names
+// ignore_for_file: file_names
 import 'dart:convert';
 
 import 'package:weather/core/Network/http_client.dart';
@@ -25,12 +25,10 @@ class WeatherRemoteDataSrouceImpl extends WeatherRemoteDataSrouce {
 
   @override
   Future<WeatherBySearchResponseModel> getWeatherByCitiy({required String query}) async {
-    final String path = "/location/search/?query=$query";
+    final String path = "/search/?query=$query";
     try {
       final respone = await client.get(path: path);
-      final WeatherBySearchResponseModel response = WeatherBySearchResponseModel.fromJson(
-        utf8.decode(respone.bodyBytes),
-      );
+      final WeatherBySearchResponseModel response = WeatherBySearchResponseModel.fromMap(json.decode(respone.body));
       if (respone.statusCode == RESPONSE_SUCCESS) {
         return response;
       } else {
@@ -45,7 +43,7 @@ class WeatherRemoteDataSrouceImpl extends WeatherRemoteDataSrouce {
 
   @override
   Future<WeatherByWoeidResponseModel> getWeatherByWoeid({required int woeid}) async {
-    final String path = "location/$woeid/";
+    final String path = "/$woeid/";
     try {
       final respone = await client.get(path: path);
       final WeatherByWoeidResponseModel response = WeatherByWoeidResponseModel.fromJson(
