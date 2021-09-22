@@ -5,7 +5,7 @@ class Weather {
   String sunSet;
   String timezoneName;
   Parent parent;
-  List<Source> sources;
+  // List<Source> sources;
   String title;
   String locationType;
   int woeid;
@@ -19,7 +19,7 @@ class Weather {
     required this.sunSet,
     required this.timezoneName,
     required this.parent,
-    required this.sources,
+    // required this.sources,
     required this.title,
     required this.locationType,
     required this.woeid,
@@ -78,16 +78,18 @@ class ConsolidatedWeather {
   });
 }
 
-class Source {
-  String title;
-  String slug;
-  String url;
-  int crawlRate;
+// not needed class for UI
 
-  Source({
-    required this.title,
-    required this.slug,
-    required this.url,
-    required this.crawlRate,
-  });
-}
+// class Source {
+//   String title;
+//   String slug;
+//   String url;
+//   int crawlRate;
+
+//   Source({
+//     required this.title,
+//     required this.slug,
+//     required this.url,
+//     required this.crawlRate,
+//   });
+// }
