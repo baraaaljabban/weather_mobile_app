@@ -9,6 +9,7 @@ part 'weather_state.dart';
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final SearchWeatherByCity usecase;
   WeatherBloc({required this.usecase}) : super(WeatherInitial());
+  late Weather weather;
   @override
   Stream<WeatherState> mapEventToState(
     WeatherEvent event,
@@ -16,10 +17,18 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     if (event is SearchWeatherByCityEvent) {
       yield Loading();
       final searchResult = await usecase(params: event.params);
-      yield searchResult.fold(
-        (l) => Error(message: l.message),
-        (r) => SearchResultState(weather: r),
+      yield* searchResult.fold(
+        (l) async* {
+          yield Error(message: l.message);
+        },
+        (r) async* {
+          weather = r;
+          yield SearchResultState(weather: r);
+          yield DetailedDayWeatherState(consolidatedWeather: r.consolidatedWeather.first, list: r.consolidatedWeather);
+        },
       );
+    } else if (event is SelectDayToShowWeatherDetails) {
+      yield DetailedDayWeatherState(consolidatedWeather: weather.consolidatedWeather[event.indexOfDay],list: weather.consolidatedWeather);
     }
   }
 }
