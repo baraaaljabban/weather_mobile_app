@@ -1,3 +1,5 @@
+import 'package:weather/core/AppStrings/error_strings.dart';
+
 abstract class Failure {
   final String message;
   Failure(this.message);
@@ -18,3 +20,7 @@ class UnknownFailuer extends Failure {
   UnknownFailuer({required String message}) : super(message);
 }
 
+
+class NoResultFound extends Failure {
+  NoResultFound() : super(NO_DATA_FOUND);
+}
