@@ -21,13 +21,13 @@ class DetailedDayWeatherState extends WeatherState {
   DetailedDayWeatherState({required this.consolidatedWeather,required this.list});
 }
 
-class ListDaysWeather extends WeatherState {
-  final List<ConsolidatedWeather> consolidatedWeather;
-  ListDaysWeather({required this.consolidatedWeather});
-}
+// class ListDaysWeather extends WeatherState {
+//   final List<ConsolidatedWeather> consolidatedWeather;
+//   ListDaysWeather({required this.consolidatedWeather});
+// }
 
 /// this state is once loading finished after user typed the city name will show the weather for that city
-class SearchResultState extends WeatherState {
-  final Weather weather;
-  SearchResultState({required this.weather});
-}
+// class SearchResultState extends WeatherState {
+//   final Weather weather;
+//   SearchResultState({required this.weather});
+// }
