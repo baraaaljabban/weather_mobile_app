@@ -18,3 +18,7 @@ class SelectDayToShowWeatherDetails extends WeatherEvent {
 
   SelectDayToShowWeatherDetails({required this.indexOfDay});
 }
+
+class ChangeTempEvent extends WeatherEvent {
+  ChangeTempEvent();
+}
