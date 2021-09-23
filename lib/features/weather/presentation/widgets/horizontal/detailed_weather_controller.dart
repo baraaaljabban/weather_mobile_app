@@ -33,16 +33,13 @@ class _DetailedWeatherControllerState extends State<DetailedWeatherController> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: Center(
-                    child: Text(
-                      widget.consolidatedWeather.day,
-                    ),
-                  ),
+                  child: Day(day: widget.consolidatedWeather.day),
                 ),
                 Expanded(
                   flex: 1,
                   child: Text(
                     widget.consolidatedWeather.weatherStateName,
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
                 Expanded(
@@ -56,14 +53,9 @@ class _DetailedWeatherControllerState extends State<DetailedWeatherController> {
                 Expanded(
                   flex: 1,
                   child: Center(
-                    child: RichText(
-                      text: TextSpan(
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(text: "${widget.consolidatedWeather.theTemp}"),
-                          TextSpan(text: widget.consolidatedWeather.isTempInCelsius ? "\u2103" : "\u2109"),
-                        ],
-                      ),
+                    child: TheTemp(
+                      theTemp: widget.consolidatedWeather.theTemp,
+                      isTempInCelsius: widget.consolidatedWeather.isTempInCelsius,
                     ),
                   ),
                 ),
@@ -71,18 +63,21 @@ class _DetailedWeatherControllerState extends State<DetailedWeatherController> {
                   flex: 1,
                   child: Text(
                     "Humidity: ${widget.consolidatedWeather.humidity}%",
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: Text(
-                    "Pressure : ${widget.consolidatedWeather.airPressure} hpa",
+                    "Pressure: ${widget.consolidatedWeather.airPressure}hpa",
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: Text(
-                    "Wind: ${widget.consolidatedWeather.windSpeed} km/h",
+                    "Wind: ${widget.consolidatedWeather.windSpeed}km/h",
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
               ],
@@ -92,6 +87,54 @@ class _DetailedWeatherControllerState extends State<DetailedWeatherController> {
           return Container();
         }
       },
+    );
+  }
+}
+
+class TheTemp extends StatelessWidget {
+  const TheTemp({
+    Key? key,
+    required this.isTempInCelsius,
+    required this.theTemp,
+  }) : super(key: key);
+
+  final bool isTempInCelsius;
+  final int theTemp;
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        style: Theme.of(context).textTheme.headline3,
+        children: <TextSpan>[
+          TextSpan(
+            text: "$theTemp",
+            style: Theme.of(context).textTheme.headline3,
+          ),
+          TextSpan(
+            text: isTempInCelsius ? "\u2103" : "\u2109",
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Day extends StatelessWidget {
+  const Day({
+    Key? key,
+    required this.day,
+  }) : super(key: key);
+
+  final String day;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        day,
+        style: Theme.of(context).textTheme.headline1,
+      ),
     );
   }
 }

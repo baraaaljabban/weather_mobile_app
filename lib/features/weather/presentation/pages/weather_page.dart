@@ -4,6 +4,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:weather/features/common/snack_bar.dart';
 import 'package:weather/features/weather/export_weather_feature.dart';
 import 'package:weather/features/weather/presentation/widgets/horizontal/weather_controller_horizontal.dart';
+import 'package:weather/features/weather/presentation/widgets/vertical/weather_controller_vertical.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _WeatherPageState extends State<WeatherPage> {
             },
             child: OrientationBuilder(
               builder: (context, orientation) {
-                return orientation == Orientation.landscape ? const WeatherControllerHorizontal() : const WeatherControllerHorizontal();
+                return orientation == Orientation.portrait ? const WeatherControllerHorizontal() : const WeatherControllerVertical();
               },
             ),
           );

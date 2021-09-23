@@ -39,13 +39,19 @@ class WeatherDaysListController extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: RichText(
                     text: TextSpan(
-                      style: DefaultTextStyle.of(context).style,
+                      style: Theme.of(context).textTheme.bodyText2,
                       children: <TextSpan>[
                         TextSpan(text: "${list[index].minTemp}"),
-                        TextSpan(text: list[index].isTempInCelsius ? "\u2103" : "\u2109"),
+                        TextSpan(
+                          text: list[index].isTempInCelsius ? "\u2103" : "\u2109",
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
                         const TextSpan(text: " / "),
                         TextSpan(text: "${list[index].maxTemp}"),
-                        TextSpan(text: list[index].isTempInCelsius ? "\u2103" : "\u2109"),
+                        TextSpan(
+                          text: list[index].isTempInCelsius ? "\u2103" : "\u2109",
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
                       ],
                     ),
                   ),

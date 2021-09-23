@@ -24,12 +24,32 @@ class _AppState extends State<App> {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          brightness: dayMode ? Brightness.dark : Brightness.light,
+          brightness: Brightness.light,
+          fontFamily: 'Georgia',
+          textTheme: const TextTheme(
+            headline1: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            headline2: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+            headline3: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            bodyText1: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            bodyText2: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            subtitle1: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+            subtitle2: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+          ),
         ),
         darkTheme: ThemeData(
-          brightness: dayMode ? Brightness.dark : Brightness.light,
+          brightness: Brightness.dark,
+          fontFamily: 'Georgia',
+          textTheme: const TextTheme(
+            headline1: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            headline2: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+            headline3: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            bodyText1: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            bodyText2: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            subtitle1: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+            subtitle2: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+          ),
         ),
-        themeMode: ThemeMode.dark,
+        themeMode: dayMode ? ThemeMode.dark : ThemeMode.light,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -37,7 +57,6 @@ class _AppState extends State<App> {
             backgroundColor: Colors.blue,
             centerTitle: true,
             actions: [
-              
               IconButton(
                 icon: Icon(dayMode ? Icons.nightlight : Icons.light_mode),
                 onPressed: () {
