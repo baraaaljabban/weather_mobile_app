@@ -4,6 +4,7 @@ import 'package:weather/features/weather/domain/usecases/weather_by_city.dart';
 import 'package:weather/features/weather/presentation/bloc/weather_bloc.dart';
 import 'package:weather/features/weather/presentation/widgets/horizontal/detailed_weather_controller.dart';
 import 'package:weather/features/weather/presentation/widgets/horizontal/weather_days_list_controller.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class WeatherControllerHorizontal extends StatefulWidget {
   const WeatherControllerHorizontal({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class WeatherControllerHorizontal extends StatefulWidget {
 
 class _WeatherControllerHorizontalState extends State<WeatherControllerHorizontal> {
   final myController = TextEditingController();
+  bool isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,29 @@ class _WeatherControllerHorizontalState extends State<WeatherControllerHorizonta
             ),
             if (state is DetailedDayWeatherState)
               Expanded(flex: 10, child: DetailedWeatherController(consolidatedWeather: state.consolidatedWeather)),
-            if (state is DetailedDayWeatherState) Expanded(flex: 5, child: WeatherDaysListController(list: state.list)),
+            if (state is DetailedDayWeatherState) Expanded(flex: 4, child: WeatherDaysListController(list: state.list)),
+            if (state is DetailedDayWeatherState)
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: SwitchListTile(
+                      secondary: BoxedIcon(
+                        isSwitched ? WeatherIcons.celsius : WeatherIcons.fahrenheit,
+                      ),
+                      value: isSwitched,
+                      title: const Text('Switch Temp'),
+                      onChanged: (value) {
+                        BlocProvider.of<WeatherBloc>(context).add(ChangeTempEvent());
+                        setState(() {
+                          isSwitched = value;
+                        });
+                      },
+                    ),
+                  ),
+                  const Spacer(flex: 1),
+                ],
+              ),
           ],
         );
       },
