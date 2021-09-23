@@ -18,20 +18,33 @@ class WeatherRepositoryImpl extends WeatherRepository {
 
   @override
   Future<Either<Failure, Weather>> getWeatherByCitiy({required String query}) async {
+    //so first of all I'm checking if the user is connected to the internet or not
     if (await networkInfo.isConnected()) {
       try {
+        // first call the `getWeatherByCitiy` to get the [woeid] that we will use it to fetch
+        //weather days List and other info
         final getWeatherByCitiyResult = await remoteDataSrouce.getWeatherByCitiy(query: query);
+        //will return Failuer if there is no result from search
         if (getWeatherByCitiyResult.weatherSearchList.isEmpty) return Left(NoResultFound());
+        //call getWeatherByWoeid and pass the `woeid` that we got from the first call
         final getWeatherByWoeidResult =
             await remoteDataSrouce.getWeatherByWoeid(woeid: getWeatherByCitiyResult.weatherSearchList.first.woeid);
+        //if there was no result then return NoResult
         if (getWeatherByWoeidResult.consolidatedWeatherModel.isEmpty) return Left(NoResultFound());
+        // other than that we return our call as Weather entity class
         return Right(getWeatherByWoeidResult);
-      } on ServerException catch (e) {
+      }
+      //if we got any Exception from the previouse layer we return Failure
+      on ServerException catch (e) {
         return Left(UnExpectedServerResponseFailure(e.message));
-      } catch (e) {
+      }
+      //this might happen if there was error  other than the server side error
+      catch (e) {
         return Left(UnknownFailuer(message: e.toString()));
       }
-    } else {
+    }
+    //here it means that the user has no Connection
+    else {
       return Left(InternetConnectionFailure(NO_INTERNET));
     }
   }
