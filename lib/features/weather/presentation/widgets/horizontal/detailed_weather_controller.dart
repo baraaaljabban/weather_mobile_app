@@ -48,16 +48,22 @@ class _DetailedWeatherControllerState extends State<DetailedWeatherController> {
                 Expanded(
                   flex: 5,
                   child: Center(
-                      child: MyNetworkImage(
-                        weatherStateAbbr: widget.consolidatedWeather.weatherStateAbbr,
-                      ),
+                    child: MyNetworkImage(
+                      weatherStateAbbr: widget.consolidatedWeather.weatherStateAbbr,
+                    ),
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: Center(
-                    child: Text(
-                      "${widget.consolidatedWeather.theTemp}\u2103",
+                    child: RichText(
+                      text: TextSpan(
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(text: "${widget.consolidatedWeather.theTemp}"),
+                          TextSpan(text: widget.consolidatedWeather.isTempInCelsius ? "\u2103" : "\u2109"),
+                        ],
+                      ),
                     ),
                   ),
                 ),

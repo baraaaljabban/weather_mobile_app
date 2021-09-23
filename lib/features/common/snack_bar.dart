@@ -19,13 +19,26 @@ class SnackBarHelper {
     });
   }
 
-  static void showErrorSnackBar(BuildContext context, {String? message}) {
+  static void showErrorSnackBar(BuildContext context, {String? message, void Function()? callBack}) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message ??""),
+        content: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.05,
+          child: Row(
+            children: [
+              Text(message ?? ""),
+              IconButton(
+                onPressed: () => callBack!.call(),
+                icon: const Icon(
+                  Icons.refresh_outlined,
+                ),
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.red,
-        duration: const Duration(seconds: 10),
+        duration: const Duration(seconds: 20),
       ),
     );
   }
@@ -34,7 +47,7 @@ class SnackBarHelper {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message ??""),
+        content: Text(message ?? ""),
         backgroundColor: Colors.green,
         duration: const Duration(seconds: 10),
       ),
@@ -45,7 +58,7 @@ class SnackBarHelper {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message ??""),
+        content: Text(message ?? ""),
         backgroundColor: Colors.orange,
         duration: const Duration(
           seconds: 18,

@@ -24,7 +24,7 @@ class _WeatherPageState extends State<WeatherPage> {
           if (state is Loading) {
             SnackBarHelper.showLoadingSnackBar(context);
           } else if (state is Error) {
-            SnackBarHelper.showErrorSnackBar(context, message: state.message);
+            SnackBarHelper.showErrorSnackBar(context, message: state.message, callBack: dispatchSearchEvent);
           } else {
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
           }
@@ -33,7 +33,7 @@ class _WeatherPageState extends State<WeatherPage> {
           return SmartRefresher(
             controller: _refreshController,
             onRefresh: () {
-              BlocProvider.of<WeatherBloc>(context).add(SearchWeatherByCityEvent());
+              dispatchSearchEvent();
               _refreshController.refreshCompleted();
             },
             child: OrientationBuilder(
@@ -45,5 +45,9 @@ class _WeatherPageState extends State<WeatherPage> {
         },
       ),
     );
+  }
+
+  void dispatchSearchEvent() {
+    BlocProvider.of<WeatherBloc>(context).add(SearchWeatherByCityEvent());
   }
 }
