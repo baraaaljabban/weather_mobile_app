@@ -12,12 +12,13 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   String city = "";
   WeatherBloc({required this.usecase}) : super(WeatherInitial());
   late Weather weather;
+  int indexOfSelectedDay = 0;
   @override
   Stream<WeatherState> mapEventToState(
     WeatherEvent event,
   ) async* {
     if (event is SearchWeatherByCityEvent) {
-      if (event.params != null || city.isNotEmpty) {
+      if ((event.params != null && event.params!.query.isNotEmpty) || city.isNotEmpty) {
         //here I'm passing either the city that the user enterd previously
         //so when pull to refresh happen I'll get the old value
         //and when the `event.params` is not null I'll get the value from it
@@ -25,14 +26,13 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         var params = SearchWeatherByCityParams(query: city.trim());
         yield Loading();
         final searchResult = await usecase(params: params);
-        yield* searchResult.fold(
-          (l) async* {
-            yield Error(message: l.message);
+        yield searchResult.fold(
+          (l) {
+            return Error(message: l.message);
           },
-          (r) async* {
+          (r) {
             weather = r;
-            // yield SearchResultState(weather: r);
-            yield DetailedDayWeatherState(consolidatedWeather: r.consolidatedWeather.first, list: r.consolidatedWeather);
+            return DetailedDayWeatherState(consolidatedWeather: r.consolidatedWeather.first, list: r.consolidatedWeather);
           },
         );
       } else {
@@ -40,7 +40,27 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         yield Error(message: EMPTY_QUERY);
       }
     } else if (event is SelectDayToShowWeatherDetails) {
+      indexOfSelectedDay = event.indexOfDay;
       yield DetailedDayWeatherState(consolidatedWeather: weather.consolidatedWeather[event.indexOfDay], list: weather.consolidatedWeather);
+    } else if (event is ChangeTempEvent) {
+      //convert from Fahrenheit to celsius and the other way around
+      for (var element in weather.consolidatedWeather) {
+        //set the InFahrenheit to it's oppist
+        element.isTempInCelsius = !element.isTempInCelsius;
+        if (!element.isTempInCelsius) {
+          element.theTemp = ((element.theTemp * 1.8) + 32).round();
+          element.maxTemp = ((element.maxTemp * 1.8) + 32).round();
+          element.minTemp = ((element.minTemp * 1.8) + 32).round();
+        } else {
+          element.theTemp = ((element.theTemp - 32) * 0.5556).round();
+          element.maxTemp = ((element.maxTemp - 32) * 0.5556).round();
+          element.minTemp = ((element.minTemp - 32) * 0.5556).round();
+        }
+      }
+      yield DetailedDayWeatherState(
+        consolidatedWeather: weather.consolidatedWeather[indexOfSelectedDay],
+        list: weather.consolidatedWeather,
+      );
     }
   }
 }
