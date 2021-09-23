@@ -40,10 +40,6 @@ run tests by using
 flutter test
 ```
 
-## Improvements
-1. more abstraction for some UI parts would be more better to use it in other Places.
-2. test cases can be more coverage.  
-
 ## Best Practise
 1. Implemente Seperation of Concerns by applying MVVM as clean architecture
 2. Implement Dependency Injection for providing objects to required class by applying GET_IT library 
@@ -52,6 +48,10 @@ flutter test
 5. the code is very commented so anyone can read it easly
 6. and others :)
 
+
+## Improvements
+1. more abstraction for some UI parts would be more better to use it in other Places.
+2. test cases can be more coverage.  
 
 it's open source. enjoy :)
 
