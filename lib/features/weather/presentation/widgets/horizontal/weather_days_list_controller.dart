@@ -7,9 +7,6 @@ import 'package:weather/features/weather/presentation/widgets/horizontal/detaile
 class WeatherDaysListController extends StatelessWidget {
   final List<ConsolidatedWeather> list;
   const WeatherDaysListController({Key? key, required this.list}) : super(key: key);
-
-  // String F = \u2109
-  //String C = \u2103
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -40,7 +37,18 @@ class WeatherDaysListController extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  child: Text("${list[index].minTemp}\u2103 /${list[index].maxTemp}\u2103"),
+                  child: RichText(
+                    text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(text: "${list[index].minTemp}"),
+                        TextSpan(text: list[index].isTempInCelsius ? "\u2103" : "\u2109"),
+                        const TextSpan(text: " / "),
+                        TextSpan(text: "${list[index].maxTemp}"),
+                        TextSpan(text: list[index].isTempInCelsius ? "\u2103" : "\u2109"),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
