@@ -1,3 +1,4 @@
+///our class that we will use it to show weather data
 class Weather {
   List<ConsolidatedWeather> consolidatedWeather;
   String time;

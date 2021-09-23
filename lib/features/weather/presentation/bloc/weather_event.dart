@@ -19,6 +19,7 @@ class SelectDayToShowWeatherDetails extends WeatherEvent {
   SelectDayToShowWeatherDetails({required this.indexOfDay});
 }
 
+///event to change the Temp unit
 class ChangeTempEvent extends WeatherEvent {
   ChangeTempEvent();
 }
