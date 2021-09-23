@@ -59,6 +59,7 @@ class ConsolidatedWeather {
   double visibility;
   int predictability;
   String day;
+  bool isTempInCelsius;
 
   ConsolidatedWeather({
     required this.id,
@@ -77,6 +78,7 @@ class ConsolidatedWeather {
     required this.visibility,
     required this.predictability,
     required this.day,
+    this.isTempInCelsius = true,
   });
 }
 
