@@ -1,4 +1,4 @@
-# Weather App applying MVVM
+# Weather App with MVVM Architecture
 
 This Application will let you get the weather of a city name enterd by user and uses 2 APIs for that.
 
