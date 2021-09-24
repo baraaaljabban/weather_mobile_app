@@ -3,7 +3,7 @@
 This Application will let you get the weather of a city name enterd by user and uses 2 APIs for that.
 
 ## FEATURES
-1. User Can Search for some for City Weather by typing the city name in the seach box and will get a list of weather days   
+1. User Can Search for City Weather by typing the a city name in the seach box and will get a list of weather days   
 2. there will be 2 types of widgets one is the list of the days and the other is the detailed weather of some day
 3. user can refresh and get new result by doing pull to refresh action
 4. it supports Landscape and Portrait Mode in 2 different designs
